@@ -254,6 +254,7 @@ function Invoke-MapRequest {
       ".js" { "text/javascript; charset=utf-8" }
       ".css" { "text/css; charset=utf-8" }
       ".json" { "application/json; charset=utf-8" }
+      ".jpeg" { "image/jpeg" }
       default { $null }
     }
 
