@@ -52,7 +52,17 @@ try {
     throw "The assistant configuration file was not served."
   }
 
-  Write-Output "Smoke test passed: health endpoint, application page and shared assistant configuration."
+  $navigationCss = Invoke-WebRequest -Uri "$baseUrl/buttons-ui/buttons-ui.css" -TimeoutSec 5 -UseBasicParsing
+  if ($navigationCss.StatusCode -ne 200 -or $navigationCss.Content -notmatch '\.bottom-navigation') {
+    throw "The bottom navigation stylesheet was not served."
+  }
+
+  $navigationScript = Invoke-WebRequest -Uri "$baseUrl/buttons-ui/buttons-ui.js" -TimeoutSec 5 -UseBasicParsing
+  if ($navigationScript.StatusCode -ne 200 -or $navigationScript.Content -notmatch 'setNavigationView') {
+    throw "The bottom navigation script was not served."
+  }
+
+  Write-Output "Smoke test passed: health endpoint, app page, assistant configuration and bottom navigation assets."
 }
 finally {
   if ($null -ne $serverProcess -and -not $serverProcess.HasExited) {
