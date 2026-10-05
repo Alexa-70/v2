@@ -43,8 +43,23 @@ try {
   }
 
   $page = Invoke-WebRequest -Uri "$baseUrl/" -TimeoutSec 5 -UseBasicParsing
-  if ($page.StatusCode -ne 200 -or $page.Content -notmatch 'assistant-config\.js') {
-    throw "The home page did not serve the shared assistant configuration."
+  if (
+    $page.StatusCode -ne 200 -or
+    $page.Content -notmatch 'assistant-config\.js' -or
+    $page.Content -notmatch 'rel="icon" type="image/jpeg"' -or
+    $page.Content -notmatch 'class="brand-logo" src="\./fomo-logo\.jpeg'
+  ) {
+    throw "The home page did not serve the expected shared configuration and FOMO logo references."
+  }
+
+  $logo = Invoke-WebRequest -Uri "$baseUrl/fomo-logo.jpeg" -TimeoutSec 5 -UseBasicParsing
+  if ($logo.StatusCode -ne 200 -or $logo.Headers["Content-Type"] -ne "image/jpeg" -or $logo.RawContentLength -lt 1000) {
+    throw "The FOMO logo image was not served as a JPEG."
+  }
+
+  $appStyles = Invoke-WebRequest -Uri "$baseUrl/styles.css?logo-smoke-test" -TimeoutSec 5 -UseBasicParsing
+  if ($appStyles.StatusCode -ne 200 -or $appStyles.Content -notmatch '\.brand-logo') {
+    throw "The FOMO logo styles were not served."
   }
 
   $assistantConfig = Invoke-WebRequest -Uri "$baseUrl/assistant-config.js" -TimeoutSec 5 -UseBasicParsing
@@ -62,7 +77,7 @@ try {
     throw "The bottom navigation script was not served."
   }
 
-  Write-Output "Smoke test passed: health endpoint, app page, assistant configuration and bottom navigation assets."
+  Write-Output "Smoke test passed: health endpoint, app page, FOMO logo and favicon, assistant configuration and bottom navigation assets."
 }
 finally {
   if ($null -ne $serverProcess -and -not $serverProcess.HasExited) {
