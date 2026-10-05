@@ -1,0 +1,8 @@
+.git
+.github
+.vscode
+.wrangler
+node_modules
+votes.json
+*.log
+*.tmp
