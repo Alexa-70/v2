@@ -1,0 +1,255 @@
+.event-workflow {
+  margin-top: 12px;
+}
+
+.workflow-notice {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(244, 144, 34, 0.25);
+  border-radius: 10px;
+  background: rgba(46, 166, 224, 0.1);
+  color: var(--ink-soft);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.workflow-switch {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.workflow-switch button {
+  flex: 1;
+  min-height: 36px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.workflow-switch button.active {
+  border-color: rgba(244, 144, 34, 0.4);
+  background: rgba(244, 144, 34, 0.14);
+  color: var(--accent-deep);
+}
+
+.workflow-view {
+  display: none;
+}
+
+.workflow-view.active {
+  display: block;
+}
+
+.workflow-heading {
+  margin-bottom: 14px;
+}
+
+.workflow-heading h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.035em;
+}
+
+.workflow-heading p:last-child {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.workflow-form,
+.reviewer-panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--card);
+}
+
+.workflow-field {
+  display: grid;
+  gap: 6px;
+}
+
+.workflow-field label {
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.workflow-field-help {
+  margin: -5px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.workflow-field input,
+.workflow-field select,
+.workflow-field textarea {
+  width: 100%;
+  min-height: 38px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  outline: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+}
+
+.workflow-field textarea {
+  min-height: 76px;
+  resize: vertical;
+}
+
+.workflow-field input:focus,
+.workflow-field select:focus,
+.workflow-field textarea:focus {
+  border-color: rgba(46, 166, 224, 0.7);
+}
+
+.workflow-submit,
+.review-action {
+  min-height: 38px;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 9px;
+  background: #ffd24c;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.workflow-submit:hover,
+.review-action:hover {
+  background: #ffdd70;
+}
+
+.review-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.workflow-status {
+  min-height: 18px;
+  margin: 10px 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.workflow-status[data-state="success"] {
+  color: var(--accent-deep);
+}
+
+.workflow-status[data-state="error"] {
+  color: #bf3e32;
+}
+
+.workflow-list {
+  display: grid;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.workflow-empty {
+  margin: 0;
+  padding: 13px;
+  border: 1px dashed var(--line);
+  border-radius: 11px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.workflow-card {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.workflow-card-top,
+.workflow-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.workflow-card h3 {
+  margin: 8px 0 5px;
+  font-size: 13px;
+}
+
+.workflow-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.workflow-card .workflow-description {
+  color: var(--muted);
+}
+
+.workflow-badge {
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: rgba(46, 166, 224, 0.12);
+  color: var(--sky-deep);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.workflow-badge.pending {
+  background: rgba(244, 144, 34, 0.14);
+  color: var(--accent-deep);
+}
+
+.workflow-badge.approved {
+  background: rgba(103, 176, 76, 0.14);
+  color: #487d38;
+}
+
+.workflow-card-actions {
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.workflow-card-actions button {
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.workflow-card-actions button.approve {
+  border-color: rgba(103, 176, 76, 0.35);
+  color: #487d38;
+}
+
+.workflow-card-actions button.reject {
+  color: #bf3e32;
+}
+
+.workflow-count {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+}
